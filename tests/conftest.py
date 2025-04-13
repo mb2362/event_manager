@@ -268,3 +268,16 @@ def user_response_data():
 @pytest.fixture
 def login_request_data():
     return {"email": "john.doe@example.com", "password": "SecurePassword123!"}  # was "username"
+
+# Generate a token for any user
+@pytest.fixture
+def generate_token():
+    def token_for(user):
+        token = create_access_token(data={"sub": str(user.id), "role": user.role})
+        return token
+    return token_for
+
+# Commonly used user-specific token for the `user` fixture
+@pytest.fixture
+async def user_token(user, generate_token):
+    return generate_token(user)
