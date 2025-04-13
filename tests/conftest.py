@@ -76,14 +76,18 @@ def initialize_database():
         pytest.fail(f"Failed to initialize the database: {str(e)}")
 
 # this function setup and tears down (drops tales) for each test function, so you have a clean database for each test.
+DROP_DB_AFTER_TESTS = True
 @pytest.fixture(scope="function", autouse=True)
 async def setup_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
     yield
-    async with engine.begin() as conn:
-        # you can comment out this line during development if you are debugging a single test
-         await conn.run_sync(Base.metadata.drop_all)
+
+    if DROP_DB_AFTER_TESTS:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.drop_all)
+
     await engine.dispose()
 
 @pytest.fixture(scope="function")
@@ -285,4 +289,9 @@ async def user_token(user, generate_token):
 @pytest.fixture
 async def admin_token(admin_user):
     token = create_access_token(data={"sub": str(admin_user.id), "role": admin_user.role})
+    return token
+
+@pytest.fixture
+async def manager_token(manager_user):
+    token = create_access_token(data={"sub": str(manager_user.id), "role": manager_user.role.name})
     return token
