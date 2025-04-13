@@ -281,3 +281,8 @@ def generate_token():
 @pytest.fixture
 async def user_token(user, generate_token):
     return generate_token(user)
+
+@pytest.fixture
+async def admin_token(admin_user):
+    token = create_access_token(data={"sub": str(admin_user.id), "role": admin_user.role})
+    return token
