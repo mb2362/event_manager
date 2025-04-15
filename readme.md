@@ -12,6 +12,7 @@ Below are five closed issues that demonstrate debugging, validation, and workflo
 4. [#6  - [Bug] Missing user_token fixture in test setup causes test failure](https://github.com/mb2362/event_manager/issues/6)
 5. [#8  - [Bug] Missing admin_token fixture breaks admin-auth tests](https://github.com/mb2362/event_manager/issues/8)
 6. [#10 - [Bug] Missing manager_token fixture prevents manager-auth test execution](https://github.com/mb2362/event_manager/issues/10)
+7. [#12 - OpenAPI Docs page login and register example data mismatch](https://github.com/mb2362/event_manager/issues/12)
 
 All issues are merged into the `main` branch and tracked through descriptive commits and pull requests, following Git best practices.
 
@@ -67,7 +68,7 @@ def user_update_data():
 
 ## 📚 Reflection
 
-This assignment provided valuable hands-on experience in writing and managing test suites for asynchronous FastAPI applications. I learned how to design reusable fixtures with `pytest`, manage dependencies between services using mocking techniques like `AsyncMock`, and ensure schema correctness through real-world test scenarios. Fixing schema validation errors taught me to align test data precisely with Pydantic expectations, and I now appreciate how even small field mismatches can cause cascading failures.
+This assignment provided valuable hands-on experience in writing and managing test suites for asynchronous FastAPI applications. I learned how to design reusable fixtures with pytest, manage dependencies between services using mocking techniques like AsyncMock, and ensure schema correctness through real-world test scenarios. Fixing schema validation errors taught me to align test data precisely with Pydantic expectations, and I now appreciate how even small field mismatches can cause cascading failures.
 
 On the collaboration side, using GitHub Issues and Pull Requests helped structure the debugging process and track changes meaningfully. I also learned how to automate workflows with GitHub Actions and maintain a clean main branch using feature branches. Reflecting on my development process and writing documentation made it easier to identify what worked well and where improvements could be made. This holistic approach combining testing, debugging, and workflow automation will be highly useful in both individual and team projects going forward.
 
